@@ -135,6 +135,7 @@ public class GooglePlaces {
     public static final String STRING_TEXT = "text"; // Review content
     public static final String STRING_DESCRIPTION = "description"; // Description of autocomplete prediction
     public static final String STRING_VALUE = "value"; // Used for autocomplete terms
+    public static final String STRING_PLACE_ID = "place_id"; // The unique identifier for retrieving information about a place
 
     //TYPES
     public static final String TYPE_ACCOUNTING = "accounting";

@@ -17,7 +17,7 @@ public class Prediction {
     private final List<DescriptionTerm> terms = new ArrayList<>();
     private final List<String> types = new ArrayList<>();
     private GooglePlaces client;
-    private String placeId, placeReference;
+    private String id, placeId, placeReference;
     private String description;
     private int substrOffset, substrLength;
 
@@ -42,6 +42,7 @@ public class Prediction {
             String description = jsonPrediction.getString(STRING_DESCRIPTION);
             String id = jsonPrediction.optString(STRING_ID, null);
             String reference = jsonPrediction.optString(STRING_REFERENCE, null);
+            String placeId = jsonPrediction.optString(STRING_PLACE_ID, null);
 
             JSONArray jsonTerms = jsonPrediction.getJSONArray(ARRAY_TERMS);
             List<DescriptionTerm> terms = new ArrayList<>();
@@ -65,7 +66,7 @@ public class Prediction {
             int substrOffset = substr.getInt(INTEGER_OFFSET);
             int substrLength = substr.getInt(INTEGER_LENGTH);
 
-            predictions.add(new Prediction().setDescription(description).setPlaceId(id)
+            predictions.add(new Prediction().setDescription(description).setId(id).setPlaceId(placeId)
                     .setPlaceReference(reference).addTerms(terms).addTypes(types).setSubstringLength(substrLength)
                     .setSubstringOffset(substrOffset).setClient(client));
         }
@@ -182,6 +183,20 @@ public class Prediction {
      * Returns the id of the place this prediction is suggesting.
      *
      * @return place id
+     */
+    public String getId() {
+        return id;
+    }
+
+    protected Prediction setId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Returns the placeId of the place this prediction is suggesting.
+     *
+     * @return place placeId
      */
     public String getPlaceId() {
         return placeId;
